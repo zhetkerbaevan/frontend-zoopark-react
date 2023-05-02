@@ -11,6 +11,8 @@ class Footer extends Component {
         return (
             <footer className="footer">
                 <span className="text-span">All Rights Reserved 2023 @Stroutillum </span>
+                <span className="text-span">All Rights Reserved 2023 @Stroutillum </span>
+                <span className="text-span">All Rights Reserved 2023 @Stroutillum </span>
             </footer>
         );
     }
