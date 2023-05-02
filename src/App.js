@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom';
 import Home from "./components/Home/Home";
 import Register from "./components/Register/Register";
-import Users from "./components/Users/Users";
+import ListUsers from "./components/Users/ListUsers";
 import Footer from "./components/Footer/Footer";
 import AddAnimal from "./components/AddAnimal/AddAnimal";
 import AddClassification from "./components/AddClassification/AddClassification";
@@ -22,7 +22,7 @@ const App = () => {
               <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/register" element={<Register />} />
-                  <Route path="/users" element={<Users />} />
+                  <Route path="/users" element={<ListUsers />} />
                   <Route path="/animals" element={<ListAnimals />} />
                   <Route path="/add-animal" element={<AddAnimal />} />
                   <Route path="/add-classification" element={<AddClassification />} />

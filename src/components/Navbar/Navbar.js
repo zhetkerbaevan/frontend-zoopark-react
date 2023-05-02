@@ -45,7 +45,7 @@ const Navbar = () => {
 
     return (
         <nav className="nav navbar-expand-lg navbar-mainbg navbar-custom">
-            <a className="navbar-brand navbar-logo" href="#">ZooPark</a>
+            <a className="navbar-brand navbar-logo" href="/">ZooPark</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -57,29 +57,34 @@ const Navbar = () => {
                         <div className="left"></div>
                         <div className="right"></div>
                     </div>
-
                     <li className="nav-item active">
-                        <NavLink className="nav-link" to="/" exact>
-                            <i className="fas fa-tachometer-alt"></i>
-                            Home
+                        <NavLink className="nav-link" to="/profile" exact>
+                            <i className="fas fa-user-circle"></i>
+                            Profile
                         </NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/register" exact>
-                            <i className="far fa-address-book"></i>
+                            <i className="far fa-address-card"></i>
                             Register
                         </NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/animals" exact>
-                            <i className="far fa-copy"></i>
+                            <i className="fas fa-paw"></i>
                             Animals (admin)
                         </NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/users" exact>
-                            <i className="far fa-copy"></i>
+                            <i className="fas fa-users"></i>
                             Users (admin)
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/users" exact>
+                            <i className="fas fa-sign-out-alt"></i>
+                            Logout
                         </NavLink>
                     </li>
                 </ul>
