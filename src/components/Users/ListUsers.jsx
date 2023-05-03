@@ -29,9 +29,7 @@ class ListUsers extends Component {
                         <th>Name</th>
                         <th>Surname</th>
                         <th>Email</th>
-                        <th>Gender</th>
                         <th>About me</th>
-                        <th>Ticket</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -44,9 +42,7 @@ class ListUsers extends Component {
                                     <td> {user.name}</td>
                                     <td> {user.surname}</td>
                                     <td> {user.email}</td>
-                                    <td> {user.gender.gender_name}</td>
                                     <td>{user.about_me} </td>
-                                    <td> {String(user.ticket)}</td>
                                 </tr>
                         )
                     }

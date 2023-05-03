@@ -10,13 +10,13 @@ const Register = () => {
     const [password, passwordchange] = useState("");
     const [email, emailchange] = useState("");
     const [about_me, about_mechange] = useState("");
-    const [gender, genderchange] = useState(0);
+    const [gender_id, genderchange] = useState("",0);
     const navigate = useNavigate();
 
 
     const handlesubmit = (e) => {
         e.preventDefault();
-        let regobj = { username, name, password, email, gender, about_me };
+        let regobj = { username, name, surname, password, email, about_me, gender_id };
             fetch("http://localhost:8000/api/v1/addUser", {
                 method: "POST",
                 headers: { 'content-type': 'application/json' },
@@ -74,9 +74,9 @@ const Register = () => {
                                     <div className="form-group">
                                         <label>Gender</label>
                                         <br></br>
-                                        <input type="radio" checked={gender === 'male'} onChange={e => genderchange(2)} name="gender" value="male" className="app-check"></input>
+                                        <input type="radio" checked={gender_id === 'male'} onChange={e => genderchange(2)} name="gender" value="male" className="app-check"></input>
                                         <label>Male</label>
-                                        <input type="radio" checked={gender === 'female'} onChange={e => genderchange(2)} name="gender" value="female" className="app-check"></input>
+                                        <input type="radio" checked={gender_id === 'female'} onChange={e => genderchange(1)} name="gender" value="female" className="app-check"></input>
                                         <label>Female</label>
                                     </div>
                                 </div>
@@ -96,5 +96,10 @@ const Register = () => {
         </div>
     );
 }
-
+class Gender {
+    constructor(gender_id, gender_name) {
+        this.gender_id = gender_id;
+        this.gender_name = gender_name;
+    }
+}
 export default Register;
