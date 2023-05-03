@@ -58,6 +58,12 @@ const Navbar = () => {
                         <div className="right"></div>
                     </div>
                     <li className="nav-item active">
+                        <NavLink className="nav-link" to="/" exact>
+                            <i className="fas fa-user-circle"></i>
+                           Home
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
                         <NavLink className="nav-link" to="/profile" exact>
                             <i className="fas fa-user-circle"></i>
                             Profile

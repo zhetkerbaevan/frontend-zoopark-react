@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.css'
 import ListAnimals from "./components/ListAnimals/ListAnimals";
 import Navbar from "./components/Navbar/Navbar";
 import {
@@ -14,13 +14,16 @@ import ListUsers from "./components/Users/ListUsers";
 import Footer from "./components/Footer/Footer";
 import AddAnimal from "./components/AddAnimal/AddAnimal";
 import AddClassification from "./components/AddClassification/AddClassification";
+import Profile from "./components/Profile/Profile";
 const App = () => {
   return (
+      <div className="div-body">
       <Router>
           <Navbar />
           <main>
               <Routes>
                   <Route path="/" element={<Home />} />
+                  <Route path="/profile" element={<Profile />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/users" element={<ListUsers />} />
                   <Route path="/animals" element={<ListAnimals />} />
@@ -30,7 +33,7 @@ const App = () => {
           </main>
           <Footer/>
       </Router>
-
+      </div>
   );
 }
 
