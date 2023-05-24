@@ -74,9 +74,9 @@ const Register = () => {
                                     <div className="form-group">
                                         <label>Gender</label>
                                         <br></br>
-                                        <input type="radio" checked={gender_id === 'male'} onChange={e => genderchange(2)} name="gender" value="male" className="app-check"></input>
+                                        <input class="form-check-input" type="radio" checked={gender_id === 'male'} onChange={e => genderchange(2)} name="gender" value="male" id="flexRadioDefault1"></input>
                                         <label>Male</label>
-                                        <input type="radio" checked={gender_id === 'female'} onChange={e => genderchange(1)} name="gender" value="female" className="app-check"></input>
+                                        <input class="form-check-input" type="radio" checked={gender_id === 'female'} onChange={e => genderchange(1)} name="gender" value="female" id="flexRadioDefault2"></input>
                                         <label>Female</label>
                                     </div>
                                 </div>
@@ -95,11 +95,5 @@ const Register = () => {
 
         </div>
     );
-}
-class Gender {
-    constructor(gender_id, gender_name) {
-        this.gender_id = gender_id;
-        this.gender_name = gender_name;
-    }
 }
 export default Register;
