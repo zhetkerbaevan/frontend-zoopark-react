@@ -13,8 +13,8 @@ import Register from "./components/Register/Register";
 import ListUsers from "./components/Users/ListUsers";
 import Footer from "./components/Footer/Footer";
 import AddAnimal from "./components/AddAnimal/AddAnimal";
-import AddClassification from "./components/AddClassification/AddClassification";
 import Profile from "./components/Profile/Profile";
+import EditAnimal from "./components/EditAnimal/EditAnimal";
 const App = () => {
   return (
       <div className="div-body">
@@ -27,13 +27,14 @@ const App = () => {
                   <Route path="/register" element={<Register />} />
                   <Route path="/users" element={<ListUsers />} />
                   <Route path="/animals" element={<ListAnimals />} />
-                  <Route path="/add-animal" element={<AddAnimal />} />
-                  <Route path="/add-classification" element={<AddClassification />} />
+                  <Route path="/add/animal" element={<AddAnimal />} />
+                  <Route path="/edit/animal/:animal_id" element={<EditAnimal />}/>
               </Routes>
           </main>
           <Footer/>
       </Router>
       </div>
+
   );
 }
 

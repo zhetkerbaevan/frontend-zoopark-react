@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import AnimalsService from "../../services/AnimalsService";
 import {Link} from "react-router-dom";
+import Service from "../../services/Service";
 
 class ListUsers extends Component {
     constructor(props){
@@ -11,10 +11,13 @@ class ListUsers extends Component {
         }
     }
 
-    componentDidMount() { //get immediately called after component is mounted
-        AnimalsService.getUsers().then((res) => {
-            this.setState({users: res.data});
-        });
+    async componentDidMount() {
+        try {
+            const res = await Service.getUsers();
+            this.setState({ users: res.data });
+        } catch (error) {
+            console.log("Failed to fetch users:", error.message);
+        }
     }
     render() {
         return (

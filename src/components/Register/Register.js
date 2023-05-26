@@ -14,21 +14,36 @@ const Register = () => {
     const navigate = useNavigate();
 
 
-    const handlesubmit = (e) => {
+    const handlesubmit = async (e) => {
         e.preventDefault();
-        let regobj = { username, name, surname, password, email, about_me, gender_id };
-            fetch("http://localhost:8000/api/v1/addUser", {
+        let regobj = {
+            username,
+            name,
+            surname,
+            password,
+            email,
+            about_me,
+            gender_id,
+        };
+
+        try {
+            const response = await fetch("http://localhost:8000/api/v1/addUser", {
                 method: "POST",
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify(regobj)
-            }).then((res) => {
-                console.log('Registered successfully.')
-                navigate('/login');
-            }).catch((err) => {
-               console.log('Failed :' + err.message);
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify(regobj),
             });
 
-    }
+            if (response.ok) {
+                console.log("Registered successfully.");
+                navigate("/login");
+            } else {
+                throw new Error("Failed to register.");
+            }
+        } catch (err) {
+            console.log("Failed: " + err.message);
+        }
+    };
+
     return (
         <div>
             <div className="offset-lg-3 col-lg-6">
@@ -74,9 +89,9 @@ const Register = () => {
                                     <div className="form-group">
                                         <label>Gender</label>
                                         <br></br>
-                                        <input class="form-check-input" type="radio" checked={gender_id === 'male'} onChange={e => genderchange(2)} name="gender" value="male" id="flexRadioDefault1"></input>
+                                        <input className="form-check-input" type="radio" checked={gender_id === 'male'} onChange={e => genderchange(2)} name="gender" value="male" id="flexRadioDefault1"></input>
                                         <label>Male</label>
-                                        <input class="form-check-input" type="radio" checked={gender_id === 'female'} onChange={e => genderchange(1)} name="gender" value="female" id="flexRadioDefault2"></input>
+                                        <input className="form-check-input" type="radio" checked={gender_id === 'female'} onChange={e => genderchange(1)} name="gender" value="female" id="flexRadioDefault2"></input>
                                         <label>Female</label>
                                     </div>
                                 </div>
@@ -91,8 +106,6 @@ const Register = () => {
                     </div>
                 </form>
             </div>
-
-
         </div>
     );
 }

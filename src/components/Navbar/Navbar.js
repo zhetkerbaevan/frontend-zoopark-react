@@ -64,9 +64,9 @@ const Navbar = () => {
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/profile" exact>
+                        <NavLink className="nav-link" to="/add/animal" exact>
                             <i className="fas fa-user-circle"></i>
-                            Profile
+                            Add Animal
                         </NavLink>
                     </li>
                     <li className="nav-item">
@@ -85,6 +85,12 @@ const Navbar = () => {
                         <NavLink className="nav-link" to="/users" exact>
                             <i className="fas fa-users"></i>
                             Users (admin)
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/profile" exact>
+                            <i className="fas fa-user-circle"></i>
+                            Profile
                         </NavLink>
                     </li>
                     <li className="nav-item">
