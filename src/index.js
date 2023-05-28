@@ -1,16 +1,37 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-        <App />
-  </React.StrictMode>
-);
+class ErrorBoundary extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            hasError: false
+        };
+    }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+    componentDidCatch(error, errorInfo) {
+        console.error('Error:', error);
+        console.error('Error Info:', errorInfo);
+        this.setState({ hasError: true });
+    }
+
+    render() {
+        if (this.state.hasError) {
+            return <div>Something went wrong.</div>;
+        }
+        return this.props.children;
+    }
+}
+
+const rootElement = document.getElementById('root');
+ReactDOM.render(
+    <ErrorBoundary>
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>
+    </ErrorBoundary>,
+    rootElement
+);

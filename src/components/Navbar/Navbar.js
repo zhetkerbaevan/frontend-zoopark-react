@@ -70,15 +70,21 @@ const Navbar = () => {
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/register" exact>
-                            <i className="far fa-address-card"></i>
-                            Register
-                        </NavLink>
-                    </li>
-                    <li className="nav-item">
                         <NavLink className="nav-link" to="/animals" exact>
                             <i className="fas fa-paw"></i>
                             Animals (admin)
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/search" exact>
+                            <i className="fas fa-users"></i>
+                           Search
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/register" exact>
+                            <i className="far fa-address-card"></i>
+                            Register
                         </NavLink>
                     </li>
                     <li className="nav-item">

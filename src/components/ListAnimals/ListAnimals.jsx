@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import Service from "../../services/Service";
 import {Link} from "react-router-dom";
-
+import {withErrorBoundary} from "react-error-boundary";
 class ListAnimals extends Component {
 
     constructor(props){
         super(props)
 
         this.state = {
-            animals: []
+            animals: [],
+            error: null
         }
     }
 
@@ -19,10 +20,11 @@ class ListAnimals extends Component {
     fetchAnimals() {
         Service.getAnimals()
             .then((res) => {
-                this.setState({ animals: res.data });
+                this.setState({ animals: res.data, error: null });
             })
             .catch((error) => {
-                console.error('Error fetching animals:', error);
+                console.log("here are we go", error)
+                this.setState({ animals: [], error: error.message });
             });
 
     }
@@ -34,10 +36,10 @@ class ListAnimals extends Component {
             .then((response) => response.json())
             .then((res) => {
                 console.log(res);
-                this.fetchAnimals(); // Обновление списка животных после удаления
+                this.fetchAnimals();
             })
             .catch((error) => {
-                console.error('Error deleting animal:', error);
+                console.log(error)
             });
     }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 import "./Home.css"
+import {withErrorBoundary} from "react-error-boundary";
 
 const customStyles = {
     content: {
@@ -76,4 +77,6 @@ class AnimalModal extends React.Component {
     }
 }
 
-export default AnimalModal;
+export default withErrorBoundary(AnimalModal, {
+    fallback: <h2>ERROR</h2>
+});

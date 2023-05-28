@@ -37,4 +37,4 @@ class Service {
     
 }
 
-export default new Service(); //export object
+export default new Service();
