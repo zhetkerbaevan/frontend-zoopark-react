@@ -10,7 +10,7 @@ class Footer extends Component {
     render() {
         return (
             <footer className="footer">
-                <span className="text-span">All Rights Reserved 2023 @Stroutillum </span>
+                <span className="text-span">All Rights Reserved 2023 @zhetkerbayevan </span>
             </footer>
         );
     }

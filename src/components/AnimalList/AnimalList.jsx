@@ -8,6 +8,4 @@ function AnimalList({ animals, renderAnimal }) {
     );
 }
 
-
-
 export default AnimalList;

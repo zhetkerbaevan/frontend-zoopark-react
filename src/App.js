@@ -17,10 +17,11 @@ import EditAnimal from "./components/EditAnimal/EditAnimal";
 import SearchFilter from "./components/SearchFilter/SearchFilter";
 import ErrorBoundry from "./components/ErrorHandling/ErrorBoundry";
 
-import Counter from "./components/Counter/Counter";
+
 const App = (props) => {
   return (
       <div className="div-body">
+          <ErrorBoundry>
           <Router>
           <Navbar />
           <main>
@@ -37,11 +38,7 @@ const App = (props) => {
           </main>
           <Footer/>
       </Router>
-
-          <div>
-              <h1>Мое Redux приложение</h1>
-              <Counter />
-          </div>
+          </ErrorBoundry>
       </div>
   );
 }

@@ -1,49 +1,49 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Service from "../../services/Service";
-import {Link} from "react-router-dom";
-import {withErrorBoundary} from "react-error-boundary";
-class ListAnimals extends Component {
+import {connect} from "react-redux";
+import {fetchAnimals} from "../Redux/Actions/Actions";
 
+class ListAnimals extends Component {
     constructor(props){
         super(props)
 
         this.state = {
-            animals: [],
-            error: null
+            animals: []
         }
     }
-
     componentDidMount() {
-        this.fetchAnimals();
+        this.props.fetchAnimals();
     }
 
-    fetchAnimals() {
-        Service.getAnimals()
-            .then((res) => {
-                this.setState({ animals: res.data, error: null });
+    handleDeleteAnimal = (id) => {
+        // Выполняем удаление животного из базы данных или других источников
+        Service.deleteAnimal(id)
+            .then(() => {
+                // Успешно удалено, обновляем состояние списка animals
+                this.setState((prevState) => {
+                    // Фильтруем массив animals, исключая удаленное животное
+                    const updatedAnimals = prevState.animals.filter(
+                        (animal) => animal.animal_id !== id
+                    );
+                    return { animals: updatedAnimals };
+                });
             })
             .catch((error) => {
-                console.log("here are we go", error)
-                this.setState({ animals: [], error: error.message });
+                console.log('Ошибка при удалении животного:', error.message);
             });
-
+    };
+    componentDidUpdate(prevProps, prevState) {
+        // Проверяем, изменился ли массив animals
+        if (prevState.animals !== this.state.animals) {
+            console.log('Массив animals был изменен:', prevState.animals, '->', this.state.animals);
+            // Выполняем дополнительные действия, связанные с изменением массива animals
+            // Например, обновляем какие-то данные или вызываем другие методы
+        }
     }
-
-    deleteAnimal(id) {
-        fetch(`http://localhost:8000/api/v1/deleteAnimal/${id}`, {
-            method: 'DELETE'
-        })
-            .then((response) => response.json())
-            .then((res) => {
-                console.log(res);
-                this.fetchAnimals();
-            })
-            .catch((error) => {
-                console.log(error)
-            });
-    }
-
     render() {
+        const { animals } = this.props;
+
         return (
             <div>
                 <h2 className="text-center">Animals</h2>
@@ -60,25 +60,43 @@ class ListAnimals extends Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {
-                       this.state.animals.map(
-                           animal =>
-                               <tr key = {animal.animal_id}>
-                                   <td> {animal.animal_id} </td>
-                                   <td> {animal.type}</td>
-                                   <td> {animal.description}</td>
-                                   <td> {animal.classification.classification_name}</td>
-                                   <td> {animal.meal.meal_name}</td>
-                                   <td> {animal.habitat.habitat_name}</td>
-                                   <td><button onClick={()=>this.deleteAnimal(animal.animal_id)} className="btn btn-danger">Delete</button>
-                                       <Link to={`/edit/animal/${animal.animal_id}`}>Edit</Link></td>
-                               </tr>
-                       )
-                    }
+                    {animals.map((animal) => (
+                        <tr key={animal.animal_id}>
+                            <td>{animal.animal_id}</td>
+                            <td>{animal.type}</td>
+                            <td>{animal.description}</td>
+                            <td>{animal.classification.classification_name}</td>
+                            <td>{animal.meal.meal_name}</td>
+                            <td>{animal.habitat.habitat_name}</td>
+                            <td>
+                                <button
+                                    onClick={() => this.handleDeleteAnimal(animal.animal_id)}
+                                    className="btn btn-danger"
+                                >
+                                    Delete
+                                </button>
+                                <br></br>
+                                <br></br>
+                                <button className="btn btn-warning">
+                                <Link to={`/edit/animal/${animal.animal_id}`}>Edit</Link>
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
             </div>
         );
     }
 }
-export default ListAnimals;
+const mapStateToProps = (state) => ({
+    animals: state.animals,
+});
+
+const mapDispatchToProps = {
+    fetchAnimals,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListAnimals);
+
+

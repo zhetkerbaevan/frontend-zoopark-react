@@ -33,6 +33,11 @@ class Service {
     updateAnimal(animal_id, updatedAnimal){
         return axios.put(`http://localhost:8000/api/v1/updateAnimal/${animal_id}`, updatedAnimal)
     }
+    deleteAnimal(id){
+        return axios.delete(`http://localhost:8000/api/v1/deleteAnimal/${id}`)
+    }
+
+
 
     
 }
