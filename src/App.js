@@ -16,7 +16,9 @@ import Profile from "./components/Profile/Profile";
 import EditAnimal from "./components/EditAnimal/EditAnimal";
 import SearchFilter from "./components/SearchFilter/SearchFilter";
 import ErrorBoundry from "./components/ErrorHandling/ErrorBoundry";
-const App = () => {
+
+import Counter from "./components/Counter/Counter";
+const App = (props) => {
   return (
       <div className="div-body">
           <Router>
@@ -35,6 +37,11 @@ const App = () => {
           </main>
           <Footer/>
       </Router>
+
+          <div>
+              <h1>Мое Redux приложение</h1>
+              <Counter />
+          </div>
       </div>
   );
 }

@@ -4,34 +4,17 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-class ErrorBoundary extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            hasError: false
-        };
-    }
+import { Provider } from 'react-redux';
 
-    componentDidCatch(error, errorInfo) {
-        console.error('Error:', error);
-        console.error('Error Info:', errorInfo);
-        this.setState({ hasError: true });
-    }
+import store from './store';
 
-    render() {
-        if (this.state.hasError) {
-            return <div>Something went wrong.</div>;
-        }
-        return this.props.children;
-    }
-}
-
-const rootElement = document.getElementById('root');
-ReactDOM.render(
-    <ErrorBoundary>
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(
+    <Provider store={store}>
         <React.StrictMode>
+
             <App />
         </React.StrictMode>
-    </ErrorBoundary>,
-    rootElement
+    </Provider>,
+    document.getElementById('root')
 );
